@@ -4,5 +4,6 @@ class CreateArticles < ActiveRecord::Migration[5.1]
       t.string :title
       t.string :url
       t.integer :topic_id
+    end
   end
 end
