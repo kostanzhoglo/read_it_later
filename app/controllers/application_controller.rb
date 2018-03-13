@@ -8,3 +8,5 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, "secret_articles"
   end
+
+end
