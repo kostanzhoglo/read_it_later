@@ -1,1 +1,11 @@
-<h1>Welcome</h1>
+<h1>Welcome, <%= @user.username %></h1>
+
+
+
+<h2>Below are Lists of All the Users' Topic Folders</h2>
+<% @users.each do |user| %>
+  <h3><%= user.username %></h3>
+  <% user.topics.each do |topic| %>
+    <%= topic.name %> <br>
+  <% end %>
+<% end %>
