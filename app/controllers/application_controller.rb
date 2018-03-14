@@ -9,4 +9,8 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret_articles"
   end
 
+  get '/' do
+    erb :home
+  end
+
 end
