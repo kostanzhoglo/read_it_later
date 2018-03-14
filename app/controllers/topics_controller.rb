@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
 
   get '/topics' do
-    if !logged_in
+    if !logged_in?
       redirect '/login'
     else
       @user = current_user
