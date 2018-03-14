@@ -11,4 +11,12 @@ class TopicsController < ApplicationController
     end
   end
 
+  get '/topics/new' do
+    if !logged_in?
+      redirect '/login'
+    else
+      erb :'/topics/new'
+    end
+  end
+
 end
