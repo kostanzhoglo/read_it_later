@@ -21,6 +21,10 @@
 
     <div class="container">
 
+      <% if flash.has?(:message) %>
+        <%= flash[:message] %>
+      <% end %>
+
       <%= yield %>
 
       <h1>Have a good read!</h1>
