@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class TopicsController < ApplicationController
+  use Rack::Flash
 
   get '/topics' do
     if !logged_in?
@@ -16,6 +19,16 @@ class TopicsController < ApplicationController
       redirect '/login'
     else
       erb :'/topics/new'
+    end
+  end
+
+  post '/topics' do
+    if params[:name] == ""
+      flash[:message] = "Error. You can't leave Topic Name blank. Please try again."
+      redirect '/topics/new'
+    else
+      @topic = Topic.create(name: params[:name])
+      redirect '/topics'
     end
   end
 
