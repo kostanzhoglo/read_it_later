@@ -5,7 +5,7 @@
 <h2>Below are Lists of All the Users' Topic Folders</h2>
 <% @users.each do |user| %>
   <h3><%= user.username %></h3>
-  <% user.topics.each do |topic| %>
-    <%= topic.name %> <br>
-  <% end %>
+  <ul><% user.topics.each do |topic| %>
+    <li><%= topic.name %> </li>
+  <% end %> </ul>
 <% end %>

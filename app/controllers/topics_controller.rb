@@ -27,7 +27,9 @@ class TopicsController < ApplicationController
       flash[:message] = "Error. You can't leave Topic Name blank. Please try again."
       redirect '/topics/new'
     else
-      @topic = Topic.create(name: params[:name])
+      @topic = Topic.new(name: params[:name])
+      @topic.user = current_user
+      @topic.save
       redirect '/topics'
     end
   end
