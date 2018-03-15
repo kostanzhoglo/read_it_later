@@ -21,4 +21,9 @@ class ArticlesController < ApplicationController
     redirect "articles/#{@article.id}"
   end
 
+  get '/articles/:id' do
+    @article = Article.find_by_id(params[:id])
+    erb :'/articles/show'
+  end
+
 end
