@@ -60,11 +60,11 @@ class TopicsController < ApplicationController
       flash[:message] = "You have to be logged in to see that."
       redirect '/login'
     else
-      @topic = Topic.find_by_slug(params[:id])
+      @topic = Topic.find_by_slug(params[:slug])
       if @topic && @topic.user == current_user
         erb :'/topics/edit'
       else
-        flash[:message] = "Only #{@topic.user.username} can edit their topics."
+        flash[:message] = "Only the creator of this topic can edit it."
         redirect '/topics'
       end
     end
