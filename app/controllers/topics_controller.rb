@@ -70,4 +70,16 @@ class TopicsController < ApplicationController
     end
   end
 
+  patch '/topics/:slug' do
+    @topic = Topic.find_by_slug(params[:slug])
+    if params[:name] == ""
+      flash[:message] = "Error. You can't leave Topic Name blank. Please try again."
+      redirect "/topics/#{@topic.slug}/edit"
+    else
+      @topic.update(name: params[:name])
+      flash[:message] = "Topic successfully updated!"
+      redirect "/topics/#{@topic.slug}"
+    end
+  end
+
 end
