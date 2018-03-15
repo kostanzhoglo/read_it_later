@@ -1,1 +1,5 @@
 <h1>These are <%= @user.username %>'s Topic Folders</h1>
+
+<% @user.topics.each do |topic| %>
+  <%= topic.name %> <br>
+<% end %>

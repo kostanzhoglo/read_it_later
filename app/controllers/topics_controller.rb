@@ -43,4 +43,13 @@ class TopicsController < ApplicationController
     end
   end
 
+  get '/topics/:slug' do
+    if !logged_in?
+      redirect '/login'
+    else
+      @topic = Topic.find_by_slug(params[:slug])
+      erb :'/topics/show_single_topic'
+    end
+  end
+
 end
