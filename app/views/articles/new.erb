@@ -9,7 +9,7 @@
   Which Topic Folder should this Article be placed in? <br>
   Please --EITHER-- choose already existing Topic Folder: (only choose one) <br>
   <% current_user.topics.each do |topic| %>
-    <input type="radio" name="Topic Name"><%= topic.name %><br>
+    <input type="checkbox" name="Topic Name"><%= topic.name %><br>
   <% end %> <br>
 
   -- OR -- Create a New Topic Folder: <br>
