@@ -2,9 +2,19 @@
 
 <form action="/articles" method="post">
   Article Title: <br>
-  <input type="text" name="title"> <br>
+  <input type="text" name="title"> <br><br>
   Full Web Address: <br>
-  <input type="text" name="url"> <br>
+  <input type="textarea" name="url"> <br><br>
+
+  Which Topic Folder should this Article be placed in? <br>
+  Please --EITHER-- choose already existing Topic Folder: (only choose one) <br>
+  <% current_user.topics.each do |topic| %>
+    <input type="radio" name="Topic Name"><%= topic.name %><br>
+  <% end %> <br>
+
+  -- OR -- Create a New Topic Folder: <br>
+  <input type="text" name="topic[name]" id="new_topic"> <br>
+
   <input type="submit" value="Make New Article">
 
 </form>
