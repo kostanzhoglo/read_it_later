@@ -82,4 +82,21 @@ class TopicsController < ApplicationController
     end
   end
 
+  delete '/topics/:slug/delete' do
+    if !logged_in?
+      flash[:message] = "You have to be logged in to see that."
+      redirect '/login'
+    else
+      @topic = Topic.find_by_slug(params[:slug])
+      if @topic.user == current_user
+        @topic.detroy
+        flash[:message] = "Topic deleted."
+        redirect '/topics'
+      else
+        flash[:message] = "Only the creator of this topic can delete it."
+        redirect '/topics'
+      end
+    end
+  end
+
 end
