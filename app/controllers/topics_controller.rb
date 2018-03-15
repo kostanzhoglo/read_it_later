@@ -5,6 +5,7 @@ class TopicsController < ApplicationController
 
   get '/topics' do
     if !logged_in?
+      flash[:message] = "You have to be logged in to see that."
       redirect '/login'
     else
       @users = User.all
@@ -16,6 +17,7 @@ class TopicsController < ApplicationController
 
   get '/topics/new' do
     if !logged_in?
+      flash[:message] = "You have to be logged in to see that."
       redirect '/login'
     else
       erb :'/topics/new'
@@ -45,10 +47,25 @@ class TopicsController < ApplicationController
 
   get '/topics/:slug' do
     if !logged_in?
+      flash[:message] = "You have to be logged in to see that."
       redirect '/login'
     else
       @topic = Topic.find_by_slug(params[:slug])
       erb :'/topics/show_single_topic'
+    end
+  end
+
+  get '/topics/:slug/edit' do
+    if !logged_in?
+      flash[:message] = "You have to be logged in to see that."
+      redirect '/login'
+    else
+      @topic = Topic.find_by_slug(params[:id])
+      if @topic && @topic.user == current_user
+        erb :'/topics/edit'
+      else
+        redirect '/topics'
+      end
     end
   end
 
