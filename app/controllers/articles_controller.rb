@@ -12,4 +12,8 @@ class ArticlesController < ApplicationController
     end
   end
 
+  post '/articles' do
+    raise params.inspect
+  end
+
 end
