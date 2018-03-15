@@ -38,6 +38,7 @@ class TopicsController < ApplicationController
 
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
+    @topics = @user.topics
     if @user != ""
       erb :'/topics/show_users_topics'
     else

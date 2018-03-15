@@ -1,5 +1,8 @@
 <h1>These are <%= @user.username %>'s Topic Folders</h1>
 
-<% @user.topics.each do |topic| %>
-  <%= topic.name %> <br>
+<% @topics.each do |topic| %>
+  <ul><h3><%= topic.name %> </h3>
+  <% topic.articles.each do |article| %>
+    <li><%= article.title %> </li>
+  <% end %> </ul>
 <% end %>
