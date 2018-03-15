@@ -64,6 +64,7 @@ class TopicsController < ApplicationController
       if @topic && @topic.user == current_user
         erb :'/topics/edit'
       else
+        flash[:message] = "Only #{@topic.user.username} can edit their topics."
         redirect '/topics'
       end
     end
