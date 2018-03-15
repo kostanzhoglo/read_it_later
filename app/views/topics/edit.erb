@@ -1,0 +1,9 @@
+<h1>Edit Your Topic Folder</h1>
+
+<form action="/topics/<%= topic.slug %>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  Update Topic Folder Name <br>
+  <input type="text" name="name" value="<%= @topic.name %>"> <br>
+  <input type="submit" value="Edit Topic">
+
+</form>
