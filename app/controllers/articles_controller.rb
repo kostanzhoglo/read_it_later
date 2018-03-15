@@ -12,14 +12,18 @@ class ArticlesController < ApplicationController
     end
   end
 
+
   post '/articles' do
     @article = Article.create(title: params[:title], url: params[:url])
-    if !params["topic"]["name"].empty?
-      @article.topic = Topic.create(name: params["topic"]["name"])
-    end
+    @article.topic = Topic.find_or_create_by(:name => params["Topic Name"])
+    # if !params["topic"]["name"].empty?
+    #   @article.topic = Topic.create(name: params["topic"]["name"])
+    # end
     @article.save
     redirect "articles/#{@article.id}"
   end
+
+
 
   get '/articles/:id' do
     @article = Article.find_by_id(params[:id])
