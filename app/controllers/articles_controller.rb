@@ -59,7 +59,29 @@ class ArticlesController < ApplicationController
   end
 
   patch '/articles/:id' do
-    raise params.inspect
+    if params[:title] == "" || params[:url] == ""
+      flash[:message] = "Error. You can't leave Article Title or Web Address blank. Please try again."
+      redirect '/articles/:id/edit'
+    else
+      @article = Article.find_by_id(params[:id])
+      @article = Article.update(title: params[:title], url: params[:url])
+      if !params[:name].empty?
+        @article.topic = Topic.find_or_create_by(name: params[:name])
+        @article.save
+        @topic = @article.topic
+        @topic.user = current_user
+        @topic.save
+        redirect "articles/#{@article.id}"
+      else
+        binding.pry
+        @article.topic = Topic.find_by(id: params["topic_id"])
+        @article.save
+        @topic = @article.topic
+        @topic.user = current_user
+        @topic.save
+        redirect "articles/#{@article.id}"
+      end
+    end
   end
 
 
