@@ -14,7 +14,6 @@ class ArticlesController < ApplicationController
 
 
   post '/articles' do
-      # binding.pry
     @article = Article.create(title: params[:title], url: params[:url])
     if !params[:name].empty?
       @article.topic = Topic.find_or_create_by(name: params[:name])
@@ -22,19 +21,17 @@ class ArticlesController < ApplicationController
       @topic = @article.topic
       @topic.user = current_user
       @topic.save
-      flash[:message] = "Did I get here?"
       redirect "articles/#{@article.id}"
     else
       @article.topic = Topic.find_by(id: params["topic_id"])
       @article.save
       @topic = @article.topic
-      binding.pry
       @topic.user = current_user
-
       @topic.save
       redirect "articles/#{@article.id}"
     end
   end
+
 
 
 

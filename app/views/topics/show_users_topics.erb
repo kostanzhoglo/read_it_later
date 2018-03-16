@@ -1,8 +1,9 @@
 <h1>These are <%= @user.username %>'s Topic Folders</h1>
+(Click one of Topic Links to Edit/Delete any Articles in that Topic) <br>
 
 <% @topics.each do |topic| %>
-  <ul><h3><%= topic.name %> </h3>
+  <ul><h3><a href=<%="/topics/#{topic.slug}"%>><%= topic.name %></a></h3>
   <% topic.articles.each do |article| %>
-    <li><%= article.title %> </li>
-  <% end %> </ul>
+    <li><a href=<%="/article/#{article.id}"%>><%= article.title %></a></li>
+  <% end %> </ul><br><br>
 <% end %>
