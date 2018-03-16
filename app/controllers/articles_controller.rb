@@ -42,6 +42,20 @@ class ArticlesController < ApplicationController
     erb :'/articles/show'
   end
 
+  get '/articles/:id/edit' do
+    if !logged_in?
+      flash[:message] = "You have to be logged in to see that."
+      redirect '/login'
+    else
+      @article = Article.find_by_id(params[:id])
+      if @article && @article.user == current_user
+        erb :'/articles/edit'
+      else
+        flash[:message] = "Only the creator of this topic can edit it."
+        redirect '/topics'
+      end
+    end
+  end
 
 
 end
