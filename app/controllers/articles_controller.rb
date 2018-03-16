@@ -48,14 +48,14 @@ class ArticlesController < ApplicationController
       redirect '/login'
     else
       @article = Article.find_by_slug(params[:slug])
+      binding.pry
       erb :'/articles/edit'
-      # @topic = @article.topic
-      # if @article && @topic.user_id == current_user.id
-      #   erb :'/articles/edit'
-      # else
-      #   flash[:message] = "HEY you! Only the creator of this article can edit it."
-      #   redirect '/topics'
-      # end
+      if @article && @article.topic.user == current_user.id
+        erb :'/articles/edit'
+      else
+        flash[:message] = "HEY you! Only the creator of this article can edit it."
+        redirect '/topics'
+      end
     end
   end
 
