@@ -65,7 +65,7 @@ class TopicsController < ApplicationController
       if @topic && @topic.user == current_user
         erb :'/topics/edit'
       else
-        flash[:message] = "Only the creator of this topic can edit it."
+        flash[:message] = "HEY you! Only the creator of this topic can edit it."
         redirect '/topics'
       end
     end
@@ -94,7 +94,7 @@ class TopicsController < ApplicationController
         flash[:message] = "Topic deleted."
         redirect '/topics'
       else
-        flash[:message] = "Only the creator of this topic can delete it."
+        flash[:message] = "HEY you! Only the creator of this topic can delete it."
         redirect '/topics'
       end
     end
