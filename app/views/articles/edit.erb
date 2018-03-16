@@ -1,0 +1,23 @@
+<h1>Edit This Article</h1>
+
+<form action="/articles/<%= @article.id %>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  Change Article Title: <br>
+  <input type="text" name="title" value="<%= @article.title %>"> <br>
+  Change Article Web Address: <br>
+  <input type="text" name="url" value="<%= @article.url %>"> <br>
+
+  Change which Topic Folder this Article be placed in: <br>
+  Please -EITHER- <br>
+  Choose an already existing Topic Folder: (only choose one) <br>
+  <% current_user.topics.each do |topic| %>
+    <input type="checkbox" name="topic_id" value="<%= topic.id %>"><%= topic.name %><br>
+  <% end %> <br>
+
+  - OR -
+  Write the name of a new Topic Folder: <br>
+  <input type="text" name="name"> <br>
+
+  <input type="submit" value="Edit Article">
+
+</form>

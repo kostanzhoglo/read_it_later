@@ -57,5 +57,9 @@ class ArticlesController < ApplicationController
     end
   end
 
+  patch '/articles/:id' do
+    raise params.inspect
+  end
+
 
 end
