@@ -4,6 +4,6 @@
 <% @topics.each do |topic| %>
   <ul><h3><a href=<%="/topics/#{topic.slug}"%>><%= topic.name %></a></h3>
   <% topic.articles.each do |article| %>
-    <li><a href=<%="/article/#{article.id}"%>><%= article.title %></a></li>
+    <li><a href=<%="#{article.url}"%>><%= article.title %></a></li>
   <% end %> </ul><br><br>
 <% end %>
