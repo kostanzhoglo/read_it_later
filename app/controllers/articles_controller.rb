@@ -39,7 +39,6 @@ class ArticlesController < ApplicationController
 
   get '/articles/:slug' do
     @article = Article.find_by_slug(params[:slug])
-    # binding.pry
     erb :'/articles/show'
   end
 
@@ -59,10 +58,18 @@ class ArticlesController < ApplicationController
     end
   end
 
+  patch '/articles/:slug' do
+    @article = Article.find_by_slug(params[:slug])
+    if params[:title] == "" || params[:url] == ""
+      flash[:message] = "Error. You can't leave Article Title or Web Address blank. Please try again."
+      redirect "/articles/#{@article.slug}/edit"
+    end
+  end
+
   # patch '/articles/:slug' do
-  #   if params[:title] == "" || params[:url] == ""
-  #     flash[:message] = "Error. You can't leave Article Title or Web Address blank. Please try again."
-  #     redirect "/articles/#{@article.slug}/edit"
+    # if params[:title] == "" || params[:url] == ""
+    #   flash[:message] = "Error. You can't leave Article Title or Web Address blank. Please try again."
+    #   redirect "/articles/#{@article.slug}/edit"
   #   else
   #     @article = Article.find_by_slug(params[:slug])
   #     @article = Article.update(title: params[:title], url: params[:url])
