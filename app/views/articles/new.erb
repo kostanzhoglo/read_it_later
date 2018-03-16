@@ -7,10 +7,15 @@
   <input type="textarea" name="url"> <br><br>
 
   Which Topic Folder should this Article be placed in? <br>
-  Please write the name of the folder: <br>
+  Please -EITHER- <br>
+  Choose an already existing Topic Folder: (only choose one) <br>
+  <% current_user.topics.each do |topic| %>
+    <input type="checkbox" name="topic_id" value="<%= topic.id %>"><%= topic.name %><br>
+  <% end %> <br>
+
+  - OR -
+  Write the name of a new Topic Folder: <br>
   <input type="text" name="name"> <br>
-
-
 
   <input type="submit" value="Make New Article">
 
