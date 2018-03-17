@@ -1,41 +1,36 @@
-# HealthyFoods
+# Read_It_Later
 
-Welcome to your Healthy Foods!  This is a simply Ruby CLI gem to learn some basic info about healthy foods on the planet earth.  You can select one of over 100 foods!
+Welcome to Read_It_Later! This is a Sinatra web app that allows users to organize and save articles and web pages they would like to read but don't have time for right now.
 
-## Installation
+Users set up an account, log in, and then can create Topic Folders and save Articles and their web addresses as they choose.  They can come back hours, days or years later and find the articles they'd like to read waiting for them.  Users can also see other users' saved articles and topics.  When done with an Article or Topic, feel free to delete.
 
-Add this line to your application's Gemfile:
+If you enter something wrong the first time, you can always edit and update the correct web address, etc. later on.
 
-```ruby
-gem 'healthy_foods'
-```
+## Installation & Usage
 
-And then execute:
+Clone this repository.
+
+And then write in your terminal:
 
     $ bundle
+    $ rake db:migrate
 
-Or install it yourself as:
+Set up the app with some example date by writing in your terminal:
 
-    $ gem install healthy_foods
+    $ rake db:seed
 
-## Usage
+    (You can always delete that seed info later)
 
-Once you have the gem installed, simply type:
+This app has the gem 'shotgun' installed. In your terminal, run
 
-./bin/healthy_foods
+    $ shotgun
 
-to enter the program.  Then follow the prompts to select any food you'd like to learn about.
-To see the entire list of foods again, type "foods", and to leave the program, type "exit".
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+And in your browser, go to http://localhost:9393/ to get started!
+To stop running this app, type ^C  (Control + C).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/kostanzhoglo/healthy_foods. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/kostanzhoglo/read_it_later. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -43,4 +38,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the HealthyFoods project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/kostanzhoglo/healthy_foods/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Read_It_Later's project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/kostanzhoglo/healthy_foods/blob/master/CODE_OF_CONDUCT.md).
