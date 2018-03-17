@@ -89,7 +89,7 @@ class TopicsController < ApplicationController
       redirect '/login'
     else
       @topic = Topic.find_by_slug(params[:slug])
-      if @topic.user == current_user
+      if @topic && @topic.user == current_user
         @topic.destroy
         flash[:message] = "Topic deleted."
         redirect '/topics'
