@@ -11,6 +11,9 @@ class UsersController < ApplicationController
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       flash[:message] = "Error: Please don't leave any fields blank when signing up."
       redirect '/signup'
+    # elsif :username == User.find_by(username: params[:username])
+    #   flash[:message] = "That username has already been taken. Please try again."
+    #   redirect '/signup'
     else
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
@@ -41,7 +44,7 @@ class UsersController < ApplicationController
 
   get '/logout' do
     if !logged_in?
-      flash[:message] = "You weren't logged in!"      
+      flash[:message] = "You weren't logged in!"
       redirect '/'
     else
       session.clear
