@@ -90,10 +90,11 @@ class ArticlesController < ApplicationController
       redirect '/login'
     else
       @article = Article.find_by_slug(params[:slug])
-      if @article && @article.topic.user == current_user
+      if @article.topic.user == current_user
         @article.destroy
+        @user = current_user
         flash[:message] = "Article deleted."
-        redirect "/users/#{user.slug}"
+        redirect "/users/#{@user.slug}"
       else
         flash[:message] = "HEY you! Only the creator of this topic can delete it."
         redirect '/topics'
