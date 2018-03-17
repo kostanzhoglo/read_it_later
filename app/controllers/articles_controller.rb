@@ -48,7 +48,6 @@ class ArticlesController < ApplicationController
       redirect '/login'
     else
       @article = Article.find_by_slug(params[:slug])
-      binding.pry
       erb :'/articles/edit'
       if @article && @article.topic.user == current_user
         erb :'/articles/edit'
