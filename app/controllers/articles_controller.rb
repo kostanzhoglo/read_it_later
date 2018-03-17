@@ -50,7 +50,7 @@ class ArticlesController < ApplicationController
       @article = Article.find_by_slug(params[:slug])
       binding.pry
       erb :'/articles/edit'
-      if @article && @article.topic.user == current_user.id
+      if @article && @article.topic.user == current_user
         erb :'/articles/edit'
       else
         flash[:message] = "HEY you! Only the creator of this article can edit it."
