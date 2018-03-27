@@ -20,18 +20,18 @@ class ArticlesController < ApplicationController
     else
       @article = Article.create(title: params[:title], url: params[:url])
       if !params[:name].empty?
-        @article.topic = Topic.find_or_create_by(name: params[:name])
+        if current_user.topics.include?(params[:name])
+          @article.topic = Topic.find_by(name: params[:name])
+        else
+          @article.topic = Topic.new(name: params[:name])
+        end
+        @article.topic.user = current_user
         @article.save
-        @topic = @article.topic
-        @topic.user = current_user
-        @topic.save
         redirect "/articles/#{@article.slug}"
       else
         @article.topic = Topic.find_by(id: params["topic_id"])
+        @article.topic.user = current_user
         @article.save
-        @topic = @article.topic
-        @topic.user = current_user
-        @topic.save
         redirect "/articles/#{@article.slug}"
       end
     end
